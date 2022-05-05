@@ -18,7 +18,7 @@ ANO | MES | SENADOR | TIPO_DESPESA | CNPJ_CPF | FORNECEDOR | DOCUMENTO | DATA | 
 
 Rápidamente podemos observar que a coluna DATA se encontra com com erro de preenchimento, O valor do ano na coluna DATA não corresponde ao valor encontrado n coluna ANO. Como não há uma espécie de manual sobre a descrição dos arquivos disponibilizados, não sabia em qual valor confiar. Por isso optei por remover os valores onde essas duas informações divergiam em todos esses datasets.
 
-```
+```python
 def drop_linhas_ano_errado(df,ano_certo):
   count=0
   for i,row in enumerate(df['DATA']):
