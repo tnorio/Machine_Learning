@@ -40,12 +40,12 @@ Foram deletadas 246 linhas em 2017
 
 Após isso todos os dados foram salvos em um único dataframe, que foi utilizado durante os próximas etapas do projeto
 
-EDA :bar_chart:
+## EDA :bar_chart:
 A realizar uma descrição rápida dos dados
 ```python
 df[["VALOR_REEMBOLSADO"]].describe().T
 ```
-Obtemos os seguitnes resultados
+Obtemos os seguintes resultados
 
 | count 	| mean 	| std 	| min 	| 25% 	| 50% 	| 75% 	| max 	| 120000.0 	|
 |---:	|---:	|---:	|---:	|---:	|---:	|---:	|---:	|---:	|
