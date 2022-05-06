@@ -1,14 +1,14 @@
 # Gastos públicos de senadores brasileiros  :eyes:  
 
-Projeto realizado com o intuito de análisar os gastos dos senadores no Brasil visando obter uma maior compreensão o comportamento das despesas do parlamentares. :credit_card:
+Projeto realizado com o intuito de análisar os gastos dos senadores no Brasil visando obter uma maior compreensão o comportamento das despesas do parlamentares. :credit_card:.
+
 Durante o projeto foi necesssário realizar  a extração, limpeza, manipulação e visualização dos dados. No final do projeto é criado uma série temporal para tentar prever os gastos futuros dos senadores.
-O dataset foi obtido pela lei da transparencia no site SITE.
 
 # Os dados :mag:
-Na seção "Transparência" no site do Senado Federal, é possível localizar os dados da CEAPS (Cota para o Exercício da Atividade Parlamentar dos Senadores),
+Na seção "Transparência" no site do [Senado Federal](https://www12.senado.leg.br/transparencia/dados-abertos-transparencia/dados-abertos-ceaps) , é possível localizar os dados da CEAPS (Cota para o Exercício da Atividade Parlamentar dos Senadores),
 que é um valor disponibilizado pelo Governo para cada senador poder usufruir no exercício de sua função. O valor da cota depende da unidade da federação que o deputado representa, a diferença entre os valores de cada estado se baseia no custo da passagem de avião entre o estado de eleição do senador e Brasília.
 
-Neste projeto optamos por utilizar os dados disponiveis entre 2017 e 2022 (no momento da elaboração do projeto este só estava disponível até o mes 04).
+Foram utilizados os dados disponiveis entre 2017 e 2022 (no momento da elaboração do projeto este só estava disponível até o mes 04).
 
 ## Limpeza e união dos dados
 Ao baixar o arquivos encontramos o primeiro erro: O arquivo estava com erro de codificação não permitindo sua abertura. A forma mais fácil de abrir o documento manualmente, abrindo-o em um bloco de notas e para salva-lo corretamente na formatação utf-8.
@@ -18,7 +18,7 @@ Os dados estão no formato
 ANO | MES | SENADOR | TIPO_DESPESA | CNPJ_CPF | FORNECEDOR | DOCUMENTO | DATA | DETALHAMENTO | VALOR_REEMBOLSADO | COD_DOCUMENTO
 ```
 
-Rápidamente podemos observar que a coluna DATA se encontra com com erro de preenchimento, O valor do ano na coluna DATA não corresponde ao valor encontrado n coluna ANO. Como não há uma espécie de manual sobre a descrição dos arquivos disponibilizados, e não sabemos se é possivel o senador declarar um gasto com uma em para um ano diferente do ano corrente, não era possivel determinar qualo campo estaria correto. Por isso, para evitar uma análise inflacionada, optei por remover os valores onde essas duas informações divergiam em todos esses datasets.
+Rápidamente podemos observar que a coluna DATA se encontra com com erro de preenchimento, O valor do ano na coluna DATA não corresponde ao valor encontrado n coluna ANO. Como não há uma espécie de manual sobre a descrição dos dados disponibilizados, e não sei se é possivel o senador declarar um gasto com uma em para um ano diferente do ano corrente, não era possivel determinar qualo campo estaria correto. Por isso, para evitar uma análise inflacionada, optei por remover os valores onde essas duas informações divergiam em todos esses datasets.
 
 ```python
 def drop_linhas_ano_errado(df,ano_certo):
@@ -57,12 +57,12 @@ Podemos observar que:
 - Grande parte dos valores reembolsados está abaixo de R$1.271 reais
 - O maior valor reembolsado foi de R$ 102.000,00, vamos ver quem gastou isso
 
-
 O estudo revelou que média dos gastos anuais entre 2017 e 2021 foi de R$ 23.910.440,98. Se o gasto fosse dividido igualmente entre todos os 81 senadores teriamos uma valor médio de R$ 295.190 por senador por ano ou R$ 24.599 reais por senador por mes.
 
+## Distribuição anual entre 2017 e 2021
+
 ## Distribuição mensal entre 2017 e 2021
-Pode-se constatar na distribuição mensal que no primeiro mês do ano não há grandes gastos,sendo o menor gasto mensal em Janeiro, possívelmente devido ao período de recesso. Porém há uma crescente dos valores logo após.
-Os maiores gastos se concentram no último trimestre do ano, especialmente no último trimestres
+Pode-se constatar na distribuição mensal que no primeiro mês do ano não há grandes gastos,sendo o menor gasto mensal em Janeiro, possívelmente devido ao período de recesso. Porém há uma crescente dos valores logo após. Os maiores gastos se concentram no último trimestre do ano, especialmente no último trimestres
 
 IMAGEM GASTOS MENSAIS
 
