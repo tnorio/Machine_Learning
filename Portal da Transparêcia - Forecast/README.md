@@ -106,6 +106,7 @@ IMAGEM GASTOS SENADOR 2017/2018
 Na análise percebemos que 34.93% dos sendores aumentaram os gastos no ano eleitoral.
 
 ## Quais foram os maiores gastos ao longo do tempo?
+### Maiores notas de reembolso emitidas
 Ao buscar pelos 10 maiores valores reembolsados na série temporal análisada foi constatado que:
 - O serviço de consultoria é o que incorre em maior valor gasto de maneira unitária. Entre os 10 maiores valores, o top 8 composto por consultoria
 - O senador SÉRGIO PETECÃO ocupa 6 das 10 posições do ranking
@@ -127,6 +128,58 @@ df[["VALOR_REEMBOLSADO","SENADOR","TIPO_DESPESA"]].sort_values(by=['VALOR_REEMBO
 | 77012.0 	| SÉRGIO PETECÃO 	| Contratação de consultorias, assessorias, pesq... 	| 2022-02-28 	|
 | 76200.0 	| HÉLIO JOSÉ 	| Divulgação da atividade parlamentar 	| 2017-12-21 	|
 | 74100.0 	| SÉRGIO PETECÃO 	| Divulgação da atividade parlamentar 	| 2017-06-12 	|
+
+### Senadores que mais gastaram ao longo do tempo
+```python
+top_gasto = df[["SENADOR","VALOR_REEMBOLSADO"]].groupby("SENADOR").sum().sort_values(by="VALOR_REEMBOLSADO", ascending = False)[:10]
+top_gasto.T
+```
+| SENADOR 	| PAULO ROCHA 	| EDUARDO BRAGA 	| TELMÁRIO MOTA 	| SÉRGIO PETECÃO 	| OMAR AZIZ 	| ROBERTO ROCHA 	| HUMBERTO COSTA 	| CIRO NOGUEIRA 	| WELLINGTON FAGUNDES 	| ACIR GURGACZ 	|
+|---:	|---:	|---:	|---:	|---:	|---:	|---:	|---:	|---:	|---:	|---:	|
+| VALOR_REEMBOLSADO 	| 2374917.23 	| 2349034.91 	| 2238641.32 	| 2212796.14 	| 2182435.66 	| 2136729.82 	| 2014268.74 	| 1959964.06 	| 1958326.86 	| 1923811.91 	|
+
+IMAGEM BARPLOT GASTOS
+
+# Analisando o gasto pelos CNPJ declarados
+Qual a empresa teve mais contratos com os senadores?
+```python
+empresas_mais_notas = df[["CNPJ_CPF"]].value_counts()
+empresas_mais_notas[:10]
+```
+| CNPJ_CPF 	| QUANTIDADE DE CONTRATOS 	|
+|---:	|---:	|
+| 16.978.175/0001-08 	| 7661 	|
+| 33.937.681/0001-78 	| 2858 	|
+| 02.558.157/0001-62 	| 2302 	|
+| 07.575.651/0001-59 	| 2213 	|
+| 26.480.780/0001-08 	| 1342 	|
+| 00.031.708/0001-00 	| 1183 	|
+| 33.469.172/0022-92 	| 1146 	|
+| 02.575.829/0001-48 	| 1021 	|
+| 00.821.459/0001-56 	| 862 	|
+| 09.296.295/0001-60 	| 800 	|
+
+Podemos observar que algumas empresas respondem por um considerado numero de notas emitidas
+O  1º CNPJ com mais notas emitidas é da empresa ADRIA VIAGENS E TURISMO LTDA.
+Apontada como fornecedora dos mais diversos tipos de serviço, entre eles:
+- Passagens aéreas, aquáticas e terrestres nacionais
+- Locomoção, hospedagem, alimentação, combustíveis e lubrificantes
+- Aquisição de material de consumo para uso no escritório político, inclusive aquisição ou locação de software, despesas postais, aquisição de publicações, locação de móveis e de equipamentos.
+
+O  2º CNPJ com mais notas emitidas é da empresa LATAM. Que forneceu somente o serviço de passagens aéreas.
+E o 3º CNPJ com mais notas emitidas é da empresa VIVO. Que forneceu somente o serviço de uso no escritório.
+ 
+
+## E Qual empresa recebeu mais valores no acumulado do período?
+```python
+empresas_maiores_valores = df[["CNPJ_CPF","VALOR_REEMBOLSADO"]].groupby("CNPJ_CPF").sum().sort_values(by="VALOR_REEMBOLSADO", ascending=False)
+```
+INSERIR IMG EMPRESAS barplot
+
+De longe a empresa que mais recebeu valores dos senadores foi a empresa ADRIA VIAGENS E TURISMO LTDA, que também foi a mesma que teve o maior volume de notas.
+
+Das 10 empresas com mais notas emitidas, 5 estão entre as top 10 empresas com maiores valores recebidos no período.
+
 
 
 
