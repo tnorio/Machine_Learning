@@ -4,6 +4,9 @@ Projeto realizado com o intuito de análisar os gastos dos senadores no Brasil v
 
 Durante o projeto foi necesssário realizar  a extração, limpeza, manipulação e visualização dos dados. No final do projeto é criado uma série temporal para tentar prever os gastos futuros dos senadores.
 
+A ideia deste projeto foi obtida durante o evento 7daysofcode da alura.
+O objetivo do evento era que durante 7 dias seriam enviados por email ideias de desafios para serem realizados por conta própria, os dias 1 e 2 constavam na limpeza e exploração dos dados e o dia 3 no desafio de criar uma série temporal.
+
 # Os dados :mag:
 Na seção "Transparência" no site do [Senado Federal](https://www12.senado.leg.br/transparencia/dados-abertos-transparencia/dados-abertos-ceaps) , é possível localizar os dados da CEAPS (Cota para o Exercício da Atividade Parlamentar dos Senadores),
 que é um valor disponibilizado pelo Governo para cada senador poder usufruir no exercício de sua função. O valor da cota depende da unidade da federação que o deputado representa, a diferença entre os valores de cada estado se baseia no custo da passagem de avião entre o estado de eleição do senador e Brasília.
@@ -73,10 +76,10 @@ plt.figure(figsize=(14,7))
 graph = sns.lineplot(y = "VALOR_REEMBOLSADO", x="ANO", hue = "SENADOR", data = df, ci = None, marker = "o")
 graph.get_legend().remove() # remover legenda;
 ```
-ao plotarmos o gráfico dos gastos dos senadores por ano, podemos notar que:
+![](https://raw.githubusercontent.com/tnorio/Machine_Learning/main/Portal%20da%20Transpar%C3%AAcia%20-%20Forecast/images/gastos_senadores_anual.png)
+*Não inclui a legenda por ser um gráfico muito poluido.*
 
-INSERIR IMAGEM
-
+Ao plotarmos o gráfico dos gastos dos senadores por ano, podemos notar que:
 - há uma ruptura de determinados valores em 2019, isso porque foi ano de eleição para o senado alguns não se reelegeram.
 - alguns senadores gastam valores bem acima dos demais.
 - outra coisa é que parece haver uma crescente nos gastos no ano antes da eleição (2018).
@@ -180,6 +183,30 @@ De longe a empresa que mais recebeu valores dos senadores foi a empresa ADRIA VI
 Das 10 empresas com mais notas emitidas, 5 estão entre as top 10 empresas com maiores valores recebidos no período.
 
 ## Forecast
+Para finalizar a análise foi criado um modelo simples de análise temporal para tentar prever os gastos dos senadores.
+Foram utilzados os dados de 2017 até 2021 para treino e os dados de 2022.01 até 2022.03 para teste do modelo.
 
-O ideia deste projeto foi obtida durante o evento 7daysofcode da alura.
-O objetivo do evento era que durante 7 dias seriam enviados por email ideias de desafios para serem realizados por conta própria.
+### Regressão Linear
+Para tentar prever os valores foi utilizada a função ```DeterministicProcess``` para criar as colunas necessárias ao modelo.
+Durante os testes foi verificado que a relação do tempo elevado a 6ª permitiria um encaixe maior com a regressão linear e os dados do modelo.
+o Resultado foi o seguinte
+
+![](https://raw.githubusercontent.com/tnorio/Machine_Learning/main/Portal%20da%20Transpar%C3%AAcia%20-%20Forecast/images/forecas_reg_lin.png)
+
+O modelo obteve um Erro Médio Absoluto (MAE) de 211.126,55 para o treino. E de 301.145,34 , para o teste.
+
+### Prophet
+Durante o 7DaysofCode foi mencionado a biblioteca ```Prophet```, criada pelo Meta (antigo Facebook), para previsão de séries temporais.
+Resolvi testar a ferramenta no projeto e o resultado foi o seguinte
+
+![](https://raw.githubusercontent.com/tnorio/Machine_Learning/main/Portal%20da%20Transpar%C3%AAcia%20-%20Forecast/images/forecast_prophet.png)
+
+O modelo acertou 78.33% dos dados dentro do intervalo de confiança para durante o TREINO.
+O modelo acertou 33.33% dos dados dentro do intervalo de confiança para durante o TESTE.
+
+O modelo preveu corrretamente a maior parte dos dados no intervalo de confiaça.
+Por algum motivo o começo de 2022 teve grandes gastos no começo do ano. Quando normalmente este primeiro mes é de poucos gastos, como visto no EDA. Talvez por isso uma subestimação dos gastos pelo modelo. Talvez por ser ano eleitoral?
+
+O modelo de treino errou 2 de 3 amostras. Porém na 3ª ele praticamente cravou o resultado; E os erros dos demais pontos ficaram pouco acima do intervalo de confiança estabelecido.
+
+Como são modelos sem muita elaboração nos dados, provávelmente carecem de informações para melhorar sua previsão.
