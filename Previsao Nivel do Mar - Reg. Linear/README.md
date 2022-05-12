@@ -10,7 +10,7 @@ Nosso modelo de regressão linear irá tentar prever a alteração do nível do 
 
 Vamos começar plotando a distribuição dos nossos dados
 
-IMAGEM
+![scatter data]("https://raw.githubusercontent.com/tnorio/Machine_Learning/main/Previsao%20Nivel%20do%20Mar%20-%20Reg.%20Linear/img/scatter_data.png")
 
 Podemos observar que a alteração do nível do mar vem ocorrendo de forma quase linear. Por isso vamos utilizar um modelo linear para tentar prever alterações futuras.
 
@@ -34,7 +34,7 @@ Usando a regressão linear nos buscamos encontrar a linha que melhor se "ajusta"
 A linha é calculada com o objetivo de reduzir ao máximo o quadrado dos erros.
 
 ## Criando o modelo
-Vamos usar a biblioteca ![LinearRegression](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html) do Scikitlearn realiza os passos descritos anteriormente para chegar aos valores do coeficiente angular e do intercept que minimizam os erros.
+Vamos usar a biblioteca [LinearRegression](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html) do Scikitlearn realiza os passos descritos anteriormente para chegar aos valores do coeficiente angular e do intercept que minimizam os erros.
 Sabendo que:
 - Com o metodo `coef_ `a biblioteca nos retornar o coeficiente angular.
 - Com o metodo `intercept` a biblioteca nos retornar o intercept.
