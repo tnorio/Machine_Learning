@@ -1,5 +1,5 @@
 # Previsão de variação do Nível do Mar - Regressão Linear :chart_with_upwards_trend: :chart_with_upwards_trend: :books:
-Neste projeto irei utilizar os dados da [CSIRO]("https://www.csiro.au/") a agência nacional de ciência Australiana. Eles estão disponiveis no [link](https://www.csiro.au/en/education/Resources/Educational-datasets/Reconstructed-Global-Mean-Sea-Level)
+Neste projeto irei utilizar os dados da [CSIRO]("https://www.csiro.au/") a agência nacional de ciência Australiana. Eles estão disponiveis no [link]("https://raw.githubusercontent.com/tnorio/Data-Analysis-with-Python-freecodecamp.org/main/Sea%20Level%20Predictor/epa-sea-level.csv")
 
 Os dados que iremos utilizar são o valor médio da variação do nivel do mar ```CSIRO Adjusted Sea Level ``` (Y)  e o ano da medição ``` Year``` (X) 1880 até 2013.
 | Year 	| CSIRO Adjusted Sea Level 	|
