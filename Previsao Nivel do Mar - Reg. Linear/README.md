@@ -2,13 +2,14 @@
 Neste projeto irei utilizar os dados da <a href="https://www.csiro.au/">CSIRO</a> a agência nacional de ciência Australiana. Eles estão disponiveis no <a href="https://raw.githubusercontent.com/tnorio/Data-Analysis-with-Python-freecodecamp.org/main/Sea%20Level%20Predictor/epa-sea-level.csv">link </a>
 
 Os dados que iremos utilizar são o valor médio da variação do nivel do mar ```CSIRO Adjusted Sea Level ``` (Y)  e o ano da medição ``` Year``` (X) 1880 até 2013.
+
 | Year 	| CSIRO Adjusted Sea Level 	|
 |---:	|---:	|
-| 0 	| 1880 	|
-| 1 	| 1881 	|
-| 2 	| 1882 	|
-| 3 	| 1883 	|
-| 4 	| 1884 	|
+| 1880 	| 0.000000 	|
+| 1881 	| 0.220472 	|
+| 1882 	| -0.440945 	|
+| 1883 	| -0.232283 	|
+| 1884 	| 0.590551 	|
 
 Vamos utilizar os dados para:
 1. Ajustar um modelo de regressão linear
