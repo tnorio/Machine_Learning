@@ -1,4 +1,4 @@
-# Previsão de variação do Nível do Mar - Regressão Linear :chart_with_upwards_trend: :chart_with_upwards_trend: :books:
+# Previsão de variação do Nível do Mar - Regressão Linear :mag: :chart_with_upwards_trend: :books:
 Neste projeto irei utilizar os dados da [CSIRO]("https://www.csiro.au/") a agência nacional de ciência Australiana. Eles estão disponiveis no [link]("https://raw.githubusercontent.com/tnorio/Data-Analysis-with-Python-freecodecamp.org/main/Sea%20Level%20Predictor/epa-sea-level.csv")
 
 Os dados que iremos utilizar são o valor médio da variação do nivel do mar ```CSIRO Adjusted Sea Level ``` (Y)  e o ano da medição ``` Year``` (X) 1880 até 2013.
@@ -87,8 +87,9 @@ No Scikitlearn podemos obter o valor do R² utilizando a classe ![r2_score]("htt
 
 ```python
 from sklearn.metrics import r2_score
-r2_score(y_true=df["CSIRO Adjusted Sea Level"],y_pred=Regression(linr.intercept_,linr.coef_,df[["Year"]]))`
-`0.9697466074149554
+r2_score(y_true=df["CSIRO Adjusted Sea Level"],y_pred=Regression(linr.intercept_,linr.coef_,df[["Year"]]))
+
+>>> 0.9697466074149554
 ```
 O modelo foi capaz de explicar 96% da variância em torno da  alteração do nível do mar.
 
@@ -102,8 +103,8 @@ Equação :eyes::eyes:
  Nosso modelo obteve 0.18% no valor do MSE.
  
  ## Vamos esticar essa série até 2050 :milky_way::milky_way:
+ No gráfico anterior, percebe-se que ocorre um crescimento mais acentuado dos valores por volta do ano 2000.
  
- No gráfico acima percebe-se que ocorre um crescimento mais acentuado dos valores por volta do ano 2000.
  Para tentar prever o imapcto desta maior acentuação do crescimento ao longo do tempo:
   1. Com base no nosso modelo atual, vamos esticar a previsão até 2050
   2. Vamos criar um novo modelo somente com os dados de 2000 até 2013 para podermos observar melhor o impacto que esta alteração pode causar até 2050.
@@ -126,7 +127,7 @@ Oque já era esperado, pois foi observado um aumento da inclinação dos pontos 
 É o gráfico comparativo dos dois modelos ficou assim
  <img src="https://github.com/tnorio/Machine_Learning/blob/main/Previsao%20Nivel%20do%20Mar%20-%20Reg.%20Linear/img/reglin_2modelos.png?raw=true">
 
-#Conclusão
+## Conclusão :stars::stars:
 Levando em consideração as previsões finais do modelo. O primeiro modelo, que levou em o comportamento de toda a série temporal, de 1880 até 2013, previu uma variação máxima no nível do mar em 2050 de 7.84.
 E o segungo modelo, que levou em considerção somente os dados de 2000 até 2013,  previu uma variação máxima no nível do mar em 2050 de 15.38.
 Quase o dobro do modelo  que leveou em consideração toda a serie temporal. Indicando um possivel crescimento do nível do Mar mais acelerado.
