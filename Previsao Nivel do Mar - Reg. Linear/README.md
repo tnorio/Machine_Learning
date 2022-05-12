@@ -35,7 +35,7 @@ Um modelo de regressão linear é composto pela seguinte equação:
 <img src="https://latex.codecogs.com/png.image?\dpi{110}&space;\bg_white&space;\hat{y}_i=\beta_0+\beta_1*x_i" width="150"/>
 
 * <img src="https://latex.codecogs.com/png.image?\dpi{110}&space;\bg_white&space;\hat{y}_i" width="25"/>: Valor que vamos prever. A variável dependente
-*<img src="https://latex.codecogs.com/png.image?\dpi{110}&space;\bg_white&space;x_i" width="25"/>: váriavel de entrada / independente
+* <img src="https://latex.codecogs.com/png.image?\dpi{110}&space;\bg_white&space;x_i" width="25"/>: váriavel de entrada / independente
 * <img src="https://latex.codecogs.com/png.image?\dpi{110}&space;\bg_white&space;\beta_0" width="25"/>: *intercept*, é ponto que corta o eixo y quando x=0.
 * <img src="https://latex.codecogs.com/png.image?\dpi{110}&space;\bg_white&space;\beta_1" width="25"/>: coeficiente angular, define a angulação da reta. Quanto mais inclinada maior a influencia que a alteração de $x_i$  provoca em <img src="https://latex.codecogs.com/png.image?\dpi{110}&space;\bg_white&space;\hat{y}_i" width="25"/>:
 
@@ -50,7 +50,7 @@ Sabendo que:
 - Com o metodo `intercept` a biblioteca nos retornar o intercept.
 
 Podemos definir uma função que calcule a reta:
-`python
+```python
 #criando uma funcao para calcular a reta
 def Regression(intercept,slope,X):
   """
@@ -58,10 +58,10 @@ def Regression(intercept,slope,X):
   """
 
   return intercept + ( slope * X ).values
-
-`
+```
 Lembrando a equação da reta:
-<img src="https://latex.codecogs.com/png.image?\dpi{110}&space;\bg_white&space;\hat{y}_i = \beta_0 + \beta_1*x_i" width="25"/>:
+
+<img src="https://latex.codecogs.com/png.image?\dpi{110}&space;\bg_white&space;\hat{y}_i=\beta_0+\beta_1*x_i" width="150"/>:
 
 Que no nosso problema se traduz em:
 Variação prevista do nível do Mar = intercept+ (slope* Ano)
@@ -80,7 +80,7 @@ Para saber o quão bom o nosso modelo foi ajustado existem algumas métricas que
 Demonstra proporcionalmente o quanto da variação na variável resposta $y$ pode ser explicada pelas  variações das variáveis de entrada $x$ no modelo. Sempre será um valor entre 0 e 1, quanto mais próximo de 1 melhor. E pode ser interpretado como uma porcentagem.
 
 É definido com a equação:
-<img src="https://latex.codecogs.com/png.image?\dpi{110}&space;\bg_white&space;R^2 = \frac{var(média) - var(modelo)}{var(média)} = 1 - \frac{var(modelo)}{var(média)}" width="25"/>
+<img src="https://latex.codecogs.com/png.image?\dpi{110}&space;\bg_white&space;R^2=\frac{var(média)-var(modelo)}{var(média)}=1-\frac{var(modelo){var(média)}" width="150"/>
 
 * var = Variância
 
@@ -100,7 +100,7 @@ As medidas de erro são usadas para fins comparativos com outros modelos e para 
 O *MSE* nos diz média do quadrado da diferença entre os valores preditos pela reta e o valor real. bQuanto MENOR o valor da métrica de erro, melhor ajustado está o nosso modelo.
 
 Equação :eyes::eyes:
-<img src="https://latex.codecogs.com/png.image?\dpi{110}&space;\bg_white&space;MSE = \frac{1}{n} \sum(y - \hat{y})^2" width="25"/>:
+<img src="https://latex.codecogs.com/png.image?\dpi{110}&space;\bg_white&space;MSE=\frac{1}{n}\sum(y-\hat{y})^2" width="150"/>:
  Nosso modelo obteve 0.18% no valor do MSE.
  
  ## Vamos esticar essa série até 2050 :milky_way::milky_way:
