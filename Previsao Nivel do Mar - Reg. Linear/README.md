@@ -1,15 +1,15 @@
 # Previsão de variação do Nível do Mar - Regressão Linear :mag: :chart_with_upwards_trend: :books:
-Neste projeto irei utilizar os dados da <a href="https://www.csiro.au/">CSIRO</a> a agência nacional de ciência Australiana. Eles estão disponiveis no <a href="https://raw.githubusercontent.com/tnorio/Data-Analysis-with-Python-freecodecamp.org/main/Sea%20Level%20Predictor/epa-sea-level.csv">link </a>
+Neste projeto irei utilizar os dados da média Global do nível do mar (GMSL) anual, disponibilizados pela <a href="https://www.csiro.au/">CSIRO</a> a agência nacional de ciência Australiana. Eles estão disponiveis no <a href="https://www.csiro.au/en/education/Resources/Educational-datasets/Reconstructed-Global-Mean-Sea-Level">link em Expert Data</a>
 
-Os dados que iremos utilizar são o valor médio da variação do nivel do mar ```CSIRO Adjusted Sea Level ``` (Y)  e o ano da medição ``` Year``` (X) 1880 até 2013.
+Os dados que iremos utilizar são o valor médio da variação do nivel do mar em milimetros ```GMSL (mm) ``` (Y)  e o ano da medição ``` Year``` (X) 1880 até 2009. Os dados possuem como valor base a média global do nível do mar em 1990, valores negativos indicam um menor nível do mar e valores positivos um maior nível do mar quando comparados a 1990.  Mais informações dos dados estão em <a href="https://www.csiro.au/en/education/Resources/Educational-datasets/Reconstructed-Global-Mean-Sea-Level">Teacher Guide PDF</a>
 
-| Year 	| CSIRO Adjusted Sea Level 	|
+| Year 	| GMSL (mm) 	|
 |---:	|---:	|
-| 1880 	| 0.000000 	|
-| 1881 	| 0.220472 	|
-| 1882 	| -0.440945 	|
-| 1883 	| -0.232283 	|
-| 1884 	| 0.590551 	|
+| 1880 	| -157.1 	|
+| 1881 	| -151.5 	|
+| ... 	| ... 	|
+| 2008 	| 49.0 	|
+| 2009 	| 55.5 	|
 
 Vamos utilizar os dados para:
 1. Ajustar um modelo de regressão linear
@@ -88,11 +88,11 @@ No Scikitlearn podemos obter o valor do R² utilizando a classe ![r2_score]("htt
 
 ```python
 from sklearn.metrics import r2_score
-r2_score(y_true=df["CSIRO Adjusted Sea Level"],y_pred=Regression(linr.intercept_,linr.coef_,df[["Year"]]))
+r2_score(y_true=df["GMSL (mm)"],y_pred=Regression(linr.intercept_,linr.coef_,df[["Year"]]))
 
->>> 0.9697466074149554
+>>> 0.978
 ```
-O modelo foi capaz de explicar 96% da variância em torno da  alteração do nível do mar.
+O modelo foi capaz de explicar 97,8% da variância em torno da  alteração do nível do mar.
 
 ### Erro Médio Quadrático / mean Squared Error (*MSE*)
 As medidas de erro são usadas para fins comparativos com outros modelos e para ter uma ideia de o quão aceitável está a saída do nosso modelo.
@@ -101,36 +101,35 @@ O *MSE* nos diz média do quadrado da diferença entre os valores preditos pela 
 
 Equação :eyes::eyes:
 <img src="https://latex.codecogs.com/png.image?\dpi{110}&space;\bg_white&space;MSE=\frac{1}{n}\sum(y-\hat{y})^2" width="150"/>:
- Nosso modelo obteve 0.18% no valor do MSE.
+ Nosso modelo obteve 73.81 no valor do MSE.
  
  ## Vamos esticar essa série até 2050 :milky_way::milky_way:
  No gráfico anterior, percebe-se que ocorre um crescimento mais acentuado dos valores por volta do ano 2000.
  
  Para tentar prever o imapcto desta maior acentuação do crescimento ao longo do tempo:
   1. Com base no nosso modelo atual, vamos esticar a previsão até 2050
-  2. Vamos criar um novo modelo somente com os dados de 2000 até 2013 para podermos observar melhor o impacto que esta alteração pode causar até 2050.
+  2. Vamos criar um novo modelo somente com os dados de 2000 até 2009 para podermos observar melhor o impacto que esta alteração pode causar até 2050.
   3. Vamos comparar os dois modelos
  
  ```python
 
-#dataset e modelo de 200 até 2013
+#dataset e modelo de 2000 até 2009
 df2k = df[df["Year"]>=2000]
 
 linr2k = LinearRegression()
-linr2k.fit(X=df2k[["Year"]],y=df2k[["CSIRO Adjusted Sea Level"]])
+linr2k.fit(X=df2k[["Year"]],y=df2k[["GMSL (mm)"]])
 
 #extend ano
 X_extendido2k = np.arange(df2k.Year.min(), 2051 )
 ```
-Podemos observar que o valor encontrado no nosso modelo de 2000 até 2013 possui um valor para o coeficiente angular ```coef_``` de ```0.16```, bem maior que o valor do modelo anterior de ```0.6```.
+Podemos observar que o valor encontrado no nosso modelo de 2000 até 2009 possui um valor para o coeficiente angular ```coef_``` de ```3.12```, o dobro do valor do modelo anterior de ```1.53```.
 Oque já era esperado, pois foi observado um aumento da inclinação dos pontos observados. Oque significa que uma menor variação no eixo X Ano, causou uma maior variação no eixo Y Variação do nível do mar.
 
 É o gráfico comparativo dos dois modelos ficou assim
  <img src="https://github.com/tnorio/Machine_Learning/blob/main/Previsao%20Nivel%20do%20Mar%20-%20Reg.%20Linear/img/reglin_2modelos.png?raw=true">
 
 ## Conclusão :stars::stars:
-Levando em consideração as previsões finais do modelo. O primeiro modelo, que levou em o comportamento de toda a série temporal, de 1880 até 2013, previu uma variação máxima no nível do mar em 2050 de 7.84.
-E o segungo modelo, que levou em considerção somente os dados de 2000 até 2013,  previu uma variação máxima no nível do mar em 2050 de 15.38.
-Quase o dobro do modelo  que leveou em consideração toda a serie temporal. Indicando um possivel crescimento do nível do Mar mais acelerado.
-
- 
+Levando em consideração as previsões finais do modelo. O primeiro modelo, que levou em o comportamento de toda a série temporal, de 1880 até 2009, previu uma variação máxima no nível do mar em 2050 de `93.28 mm`, ou 9.3cm, a mais que a média global em 1990.
+Já o segungo modelo, que levou em considerção somente os dados de 2000 até 2009,  previu uma variação máxima no nível do mar em 2050 de `178.02`, ou 17,8 cm.
+Quase o dobro do modelo que levou em consideração toda a serie temporal. Uma diferença de  aproximadamente 85mm ou 8.5 centimetros.
+Indicando um possivel crescimento do nível do Mar mais acelerado apartir dos anos 2000.
