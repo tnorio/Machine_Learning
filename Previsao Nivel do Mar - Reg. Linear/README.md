@@ -68,7 +68,7 @@ Variação prevista do nível do Mar = intercept+ (slope* Ano)
 
 Com isso podemos plotar nosso gráfico.
 
-<img src="https://raw.githubusercontent.com/tnorio/Machine_Learning/main/Previsao%20Nivel%20do%20Mar%20-%20Reg.%20Linear/img/reglin_ate13.png">
+<img src="https://raw.githubusercontent.com/tnorio/Machine_Learning/main/Previsao%20Nivel%20do%20Mar%20-%20Reg.%20Linear/img/reglin_ate09.png">
 
 ## Métricas de acertividade do modelo :eyes::eyes:
 Para saber o quão bom o nosso modelo foi ajustado existem algumas métricas que nos permitem uma maior precisão para avaliação do desempenho do modelo e comparação com outros modelos. Vamos utilizar para avaliar nosso modelo o R² e do *MSE*
@@ -128,7 +128,7 @@ Podemos observar que o valor encontrado no nosso modelo de 2000 até 2009 possui
 Oque já era esperado, pois foi observado um aumento da inclinação dos pontos observados. Oque significa que uma menor variação no eixo X Ano, causou uma maior variação no eixo Y Variação do nível do mar.
 
 É o gráfico comparativo dos dois modelos ficou assim
- <img src="https://github.com/tnorio/Machine_Learning/blob/main/Previsao%20Nivel%20do%20Mar%20-%20Reg.%20Linear/img/reglin_2modelos.png?raw=true">
+ <img src="https://raw.githubusercontent.com/tnorio/Machine_Learning/main/Previsao%20Nivel%20do%20Mar%20-%20Reg.%20Linear/img/reglin_2modelos.png">
 
 ## Conclusão :stars::stars:
 Levando em consideração as previsões finais do modelo. O primeiro modelo, que levou em o comportamento de toda a série temporal, de 1880 até 2009, previu uma variação máxima no nível do mar em 2050 de `93.28 mm`, ou 9.3cm, a mais que a média global em 1990.
