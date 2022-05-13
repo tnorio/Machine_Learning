@@ -20,7 +20,7 @@ Nosso modelo de regressão linear irá tentar prever a alteração do nível do 
 
 Vamos começar plotando a distribuição dos nossos dados
 
-<img src="https://raw.githubusercontent.com/tnorio/Machine_Learning/main/Previsao%20Nivel%20do%20Mar%20-%20Reg.%20Linear/img/scatterr%20data.png">
+<img src="https://raw.githubusercontent.com/tnorio/Machine_Learning/main/Previsao%20Nivel%20do%20Mar%20-%20Reg.%20Linear/img/scatter_data.png">
 
 Podemos observar que a alteração do nível do mar vem ocorrendo de forma quase linear. Por isso vamos utilizar um modelo linear para tentar prever alterações futuras. 
 
