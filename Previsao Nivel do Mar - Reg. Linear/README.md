@@ -100,7 +100,9 @@ As medidas de erro são usadas para fins comparativos com outros modelos e para 
 O *MSE* nos diz média do quadrado da diferença entre os valores preditos pela reta e o valor real. bQuanto MENOR o valor da métrica de erro, melhor ajustado está o nosso modelo.
 
 Equação :eyes::eyes:
+
 <img src="https://latex.codecogs.com/png.image?\dpi{110}&space;\bg_white&space;MSE=\frac{1}{n}\sum(y-\hat{y})^2" width="150"/>:
+
  Nosso modelo obteve 73.81 no valor do MSE.
  
  ## Vamos esticar essa série até 2050 :milky_way::milky_way:
@@ -130,6 +132,7 @@ Oque já era esperado, pois foi observado um aumento da inclinação dos pontos 
 
 ## Conclusão :stars::stars:
 Levando em consideração as previsões finais do modelo. O primeiro modelo, que levou em o comportamento de toda a série temporal, de 1880 até 2009, previu uma variação máxima no nível do mar em 2050 de `93.28 mm`, ou 9.3cm, a mais que a média global em 1990.
+
 Já o segungo modelo, que levou em considerção somente os dados de 2000 até 2009,  previu uma variação máxima no nível do mar em 2050 de `178.02`, ou 17,8 cm.
-Quase o dobro do modelo que levou em consideração toda a serie temporal. Uma diferença de  aproximadamente 85mm ou 8.5 centimetros.
-Indicando um possivel crescimento do nível do Mar mais acelerado apartir dos anos 2000.
+
+Quase o dobro do modelo que levou em consideração toda a serie temporal. Uma diferença de  aproximadamente 85mm ou 8.5 centimetros. Indicando um possivel crescimento do nível do Mar mais acelerado apartir dos anos 2000.
