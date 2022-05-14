@@ -103,7 +103,7 @@ Equação :eyes::eyes:
 
 <img src="https://latex.codecogs.com/png.image?\dpi{110}&space;\bg_white&space;MSE=\frac{1}{n}\sum(y-\hat{y})^2" width="150"/>:
 
- Nosso modelo obteve 73.81 no valor do MSE.
+ Nosso modelo obteve 73.81 mm² no valor do MSE. Oque é equivalente a um erro de `np.sqrt(73.81)` = 8.59 mm
  
  ## Vamos esticar essa série até 2050 :milky_way::milky_way:
  No gráfico anterior, percebe-se que ocorre um crescimento mais acentuado dos valores por volta do ano 2000.
