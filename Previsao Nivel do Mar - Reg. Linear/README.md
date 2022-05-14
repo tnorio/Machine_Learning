@@ -84,7 +84,7 @@ Demonstra proporcionalmente o quanto da variação na variável resposta $y$ pod
 
 * var = Variância
 
-No Scikitlearn podemos obter o valor do R² utilizando a classe [r2_score]("https://scikit-learn.org/stable/modules/generated/sklearn.metrics.r2_score.html")
+No Scikitlearn podemos obter o valor do R² utilizando a classe  <a href="https://scikitlearn.org/stable/modules/generated/sklearn.metrics.r2_score.html">r2_score</a>
 
 ```python
 from sklearn.metrics import r2_score
