@@ -37,7 +37,7 @@ Um modelo de regressão linear é composto pela seguinte equação:
 * <img src="https://latex.codecogs.com/png.image?\dpi{110}&space;\bg_white&space;\hat{y}_i" width="25"/>: Valor que vamos prever. A variável dependente
 * <img src="https://latex.codecogs.com/png.image?\dpi{110}&space;\bg_white&space;x_i" width="25"/>: váriavel de entrada / independente
 * <img src="https://latex.codecogs.com/png.image?\dpi{110}&space;\bg_white&space;\beta_0" width="25"/>: *intercept*, é ponto que corta o eixo y quando x=0.
-* <img src="https://latex.codecogs.com/png.image?\dpi{110}&space;\bg_white&space;\beta_1" width="25"/>: coeficiente angular, define a angulação da reta. Quanto mais inclinada maior a influencia que a alteração de $x_i$  provoca em <img src="https://latex.codecogs.com/png.image?\dpi{110}&space;\bg_white&space;\hat{y}_i" width="25"/>:
+* <img src="https://latex.codecogs.com/png.image?\dpi{110}&space;\bg_white&space;\beta_1" width="25"/>: coeficiente angular, define a angulação da reta. Quanto mais inclinada maior a influencia que a alteração de <img src="https://latex.codecogs.com/png.image?\dpi{110}&space;\bg_white&space;x_i" width="25"/>   provoca em <img src="https://latex.codecogs.com/png.image?\dpi{110}&space;\bg_white&space;\hat{y}_i" width="25"/>
 
 Usando a regressão linear nos buscamos encontrar a linha que melhor se "ajusta" aos nossos dados. Essa linha é conhecida como regressão dos minimos quadrados, pois ela se propõe a reduzir ao máximo o quadrado dos erros, que são a diferença entre o valor predito e o valor real.
 
