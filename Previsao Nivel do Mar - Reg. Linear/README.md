@@ -29,7 +29,7 @@ A regressão linear é um modelo relativamente simples, oque pode ser ruim por n
 
 Com um modelo de regressão linear é um metodo estatístico usado para prever a relação entre duas variáveis. Queremos prever o quanto de alteração da variável dependente ou preditora ```X``` influencia no valor da variável independente ou de resposta```Y```
 
-###Equação :eyes:
+### Equação :eyes:
 Um modelo de regressão linear é composto pela seguinte equação:
 
 <img src="https://latex.codecogs.com/png.image?\dpi{110}&space;\bg_white&space;\hat{y}_i=\beta_0+\beta_1*x_i" width="150"/>
