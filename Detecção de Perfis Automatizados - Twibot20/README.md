@@ -56,4 +56,3 @@ Dentre os tweets das observações foram extraidas:
 - número de # repetidas postadas
 - número de @ mencionados
 - número de @ repetidos mencionados
-
