@@ -28,15 +28,31 @@ Os dados recebidos estavam em formato .json e já estavam divididos em treino e 
 - 'domain': Assunto discutido pelo usuário, podendo ser: politics, business, entertainment e sports
 - 'label': target. '1'= bot | '0'= humano
 
+A quantidade de bots e humanos nos dados estava um pouco desbalanceada, porém está é uma característica esperada da população no mundo real. Estando da seguinte forma:
+![treino]
+![teste]
+
+
 ## Manipulação dos dados
 1. Desdobramento da coluna profile.
 Dentre as diversas informaçoes [disponiveis](https://developer.twitter.com/en/docs/twitter-api/v1/data-dictionary/object-model/user) na coluna profile
 foram extraidas as seguintes informações:
-location (se tem ou não)
-followers_count [The number of followers] e friends_count [nº of users this account is following (AKA their “followings”).] (followers friends ratio /ff ratio)
-geo_enabled
-verified
-statuses_counts (numero de posts)
-default_profile (True, the user has not altered the theme or background of their user profile.)
-default_profile_image (True = perfil com foto padrão inicial)
-created_at -> a idade do perfil
+- location (se tem ou não)
+- followers_count -> Número de seguidores
+- friends_count -> Número de perfis seguidos pelo usuário  (AKA  “followings”)
+- geo_enabled -> se o perfil já ativou o GPS em alguma postagem
+- verified -> Se o perfil é verificado
+- statuses_counts -> número de posts
+- default_profile -> Se o ousuário já alterou o tema ou o plano de fundo do perfil
+- default_profile_image -> Se o usuário já alterou a  foto padrão inicial
+- created_at -> a idade do perfil
+
+2.Desdobramento da coluna tweet
+Dentre os tweets das observações foram extraidas:
+- número de urls postados
+- número de urls repetidas postadas
+- número de # postadas
+- número de # repetidas postadas
+- número de @ mencionados
+- número de @ repetidos mencionados
+
