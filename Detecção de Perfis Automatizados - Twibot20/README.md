@@ -1,10 +1,10 @@
-# Detecção de Perfis Automatizados - Twibot20
+# Detecção de Perfis Automatizados - Twibot20 :bird: :space_invader:
 Este projeto foi realizado como projeto de conclusão do curso de Data Science da Digital House.
 Com exceção da obtenção dos dados, todo o processo de manipulação e modelagem dos dados foi realizado por mim.
 
 O projeto possui como objetivo a criação de um modelo de classificação capaz de identificar características que possam levar a identificação de um perfil automatizado (bot) na rede social Twitter.
 
-## Dados
+## :book: Dados 
 
 Os dados utilizados no projeto foram obtidos pela equipe do paper [TwiBot-20: A Comprehensive Twitter Bot Detection Benchmark](https://www.researchgate.net/publication/355785254_TwiBot-20_A_Comprehensive_Twitter_Bot_Detection_Benchmark). O paper foi elaborado com o objetivo de criar um dataset que seja representativo da realidade observada no twitter.
 
@@ -29,8 +29,9 @@ Os dados recebidos estavam em formato .json e já estavam divididos em treino e 
 - 'label': target. '1'= bot | '0'= humano
 
 A quantidade de bots e humanos nos dados estava um pouco desbalanceada, porém está é uma característica esperada da população no mundo real. Estando da seguinte forma:
-![treino]
-![teste]
+
+![treino](https://raw.githubusercontent.com/tnorio/Machine_Learning/main/Detec%C3%A7%C3%A3o%20de%20Perfis%20Automatizados%20-%20Twibot20/images/bot-humano%20treino.jpg)
+![teste](https://raw.githubusercontent.com/tnorio/Machine_Learning/main/Detec%C3%A7%C3%A3o%20de%20Perfis%20Automatizados%20-%20Twibot20/images/bot-humano%20teste.jpg)
 
 
 ## Manipulação dos dados
