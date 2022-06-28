@@ -13,7 +13,7 @@ Como os dados não estão disponíveis de forma pública na internet, este repos
 
 Os dados recebidos estavam em formato .json e já estavam divididos em treino e teste, e assim foi mantido para preservar comparações futuras.
 
-### Documentação dos dados
+### Documentação dos dados  :eyes: :clipboard:
 
 |                  ID |                                           profile |                                             tweet |                                          neighbor |                              domain | label |
 |--------------------:|--------------------------------------------------:|--------------------------------------------------:|--------------------------------------------------:|------------------------------------:|------:|
@@ -34,7 +34,7 @@ A quantidade de bots e humanos nos dados estava um pouco desbalanceada, porém e
 ![teste](https://raw.githubusercontent.com/tnorio/Machine_Learning/main/Detec%C3%A7%C3%A3o%20de%20Perfis%20Automatizados%20-%20Twibot20/images/bot-humano%20teste.jpg)
 
 
-## Manipulação dos dados
+## Manipulação dos dados  :pencil:
 ### 1. Desdobramento da coluna profile.
 Dentre as diversas informaçoes [disponiveis](https://developer.twitter.com/en/docs/twitter-api/v1/data-dictionary/object-model/user) na coluna profile
 foram extraidas as seguintes informações:
@@ -94,7 +94,8 @@ IDF(w) = log_e( Nº total de documentos) / (Nº dedocumentos que contemnham o te
 **TFIDF(w) = TF(w) * IDF(w)**
 
 Para não adicionarmos mais 200 colunas aos nosso dados, uma para cada uma das palavras selecionadas, foram selecionadas apenas as colunas que possuiam a maior variância entre os scores. Pois uma coluna com baixa variância significa que os valores entre todas as observações não são muito diferentes, e por isso não proporcionariam informações relevantes ao modelo.
-Assim somente as palavras que possuiam uma variância maior que o 3º quartil foram mantidas.
+
+Assim somente as palavras que possuiam uma variância maior que o 3º quartil, o top 25%, foram mantidas.
 Ainda assim algumas palavras sem sentido, passaram pelos filtros. Como emojis (amp) e conectivos em espanhol (en, la, los....) que foram removidas.
 As seguintes palavras foram aplicadas ao modelos, com seus respectivos TFIDF score.
 
@@ -103,8 +104,8 @@ As seguintes palavras foram aplicadas ao modelos, com seus respectivos TFIDF sco
 'lol', 'love', 'music', 'new', 'news', 'people', 'president',
 'realdonaldtrump', 'rt', 'season', 'team', 'thank', 'thanks', 'think',
 'time', 'today', 'tonight', 'trump', 'video', 'win', 'youtube'] `
-
-## Boruta_py - Feature Selection
+ 
+## Boruta_py - Feature Selection :mag:
 
 Antes de aplicar o modelo nos dados, foi realizado uma seleção de features utilizando a biblioteca [Boruta](https://github.com/scikit-learn-contrib/boruta_py).
 Boruta é um algorítmo bastante interessante, que checa a importancia de uma determianda coluna de acordo com sua performance contra uma versão com valores aleatorios da mesma (chamada de shadow feature), além de conceitos dad dsitribuição binomial para checar se uma feature realmente é importante ou não.
@@ -119,4 +120,4 @@ As colunas removidas pelo Boruta foram:
    'god', 'gt', 'music','season',
    'video', 'win','youtube']`
 
-## O MODELO
+## O MODELO :milky_way:  :octocat:
