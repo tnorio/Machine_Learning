@@ -189,3 +189,4 @@ AUC se refere a Area Under de Curve, ou área abaixo da curva, evai de 0 até 1.
 ### Feature Importance -SHAP
 Para analisármos quais foram as features mais importantes para a avaliação proposta pelo do modelo, foi utilizado o SHAP
 
+# EM CONTSTRUÇÃO
