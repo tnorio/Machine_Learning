@@ -2,7 +2,9 @@
 Este projeto foi realizado como projeto de conclusão do curso de Data Science da Digital House.
 Com exceção da obtenção dos dados, todo o processo de manipulação e modelagem dos dados foi realizado por mim.
 
-O projeto possui como objetivo a criação de um modelo de classificação capaz de identificar características que possam levar a identificação de um perfil automatizado (bot) na rede social Twitter.
+O projeto possui como objetivo a criação de um modelo de classificação capaz de identificar características que possam levar a identificação de um perfil automatizado (bot) na rede social Twitter. O modelo deve ser capaz de identificar o maior número de bots possiveis ao mesmo tempo que evita a ocorrência de falso positivo,a identificação de usuários reais como bots.
+
+Não é difícil encontrar artigos científicos que proponham a criação de modelos com esse objetivo, porém muitos deles não utilizam dados realmente representativos do mundo real ou não performam bem em um teste verdadeiro. De qualquer maneira, alguns artigos foram consultados com o intuito de obter uma maior compreensão sobre o problema e identificar possíveis features e modelos relevantes para o problema.
 
 ## :book: Dados 
 
@@ -34,11 +36,11 @@ A quantidade de bots e humanos nos dados estava um pouco desbalanceada, porém e
 ![teste](https://raw.githubusercontent.com/tnorio/Machine_Learning/main/Detec%C3%A7%C3%A3o%20de%20Perfis%20Automatizados%20-%20Twibot20/images/bot-humano%20teste.jpg)
 
 
-## Manipulação dos dados  :pencil:
-### 1. Desdobramento da coluna profile.
+# Manipulação dos dados  :pencil:
+## 1. Desdobramento da coluna profile.
 Dentre as diversas informaçoes [disponiveis](https://developer.twitter.com/en/docs/twitter-api/v1/data-dictionary/object-model/user) na coluna profile
 foram extraidas as seguintes informações:
-- location (se tem ou não)
+- location -> se possui uma localização descrita no perfil.
 - followers_count -> Número de seguidores
 - friends_count -> Número de perfis seguidos pelo usuário  (AKA  “followings”)
 - geo_enabled -> se o perfil já ativou o GPS em alguma postagem
@@ -54,7 +56,7 @@ foram extraidas as seguintes informações:
 - listed_count -> quantidade de listas públicas que o usuário é membro
 - favourites_count -> quantidade de likes que o usuário já deu em posts 
 
-#### 1.1 Algumas dessas features foram utilizadas para a criação de novas:
+### 1.1 Algumas dessas features foram utilizadas para a criação de novas:
 
 - profile_m_age -> idade do perfil em meses, baseada no created_at 
 - frequencia de tweets -> statuses_count / profile_m_age
@@ -68,7 +70,7 @@ foram extraidas as seguintes informações:
 - listed_growth_rate -> listed_count / profile_m_age. Taxa de crescimento do listed
 
 
-### 2.Desdobramento da coluna tweet
+## 2.Desdobramento da coluna tweet
 Dentre os 200 tweets de cada observação foram extraidas:
 - número de urls postados
 - número de urls repetidas postadas
@@ -79,17 +81,17 @@ Dentre os 200 tweets de cada observação foram extraidas:
 
 Estas informações foram extraidas com base na premisssa de que perfis automatizados são comumente utilizados para a propagação massiva (spam) de mensagens.
 
-#### 2.1 TFIDF - NLP
+### 2.1 TFIDF - NLP
 Com o intuito de extrair informações que possam ser relevantes para a análise com base nos textos dos posts, foi realizado um processamento de linguagem natural (NLP) simples. Foi utilizado o TFIDF para extrair as palavras 200 mais relevantes entre todos os posts.
 
 A idéia por trás do TFIDF é que se uma palavra aparece com frequencia em um documento, então ela deve ser importante e por isso deve receber um score alto. Mas se a palavra aparece em muitos outros documentos, provavelmente não é um identificador único ( pode ser um conectivo, preposição, etc.), então deve receber um valor baixo.
 
 TFIDF é a junção de 2 transformações:
-- TF -> Term Frquency ( frequência do termo)
-TF(w) = (Nº de vezes que a palavra w aparece no documento) / (Nº total de termos no documento)
+**TF** -> Term Frquency ( frequência do termo)
+**TF(w)** = (Nº de vezes que a palavra w aparece no documento) / (Nº total de termos no documento)
 
-IDF -> Inverse Term Frequency ( Inverso da frequência do termo )
-IDF(w) = log_e( Nº total de documentos) / (Nº dedocumentos que contemnham o termo w)
+**IDF** -> Inverse Term Frequency ( Inverso da frequência do termo )
+**IDF(w)** = log_e( Nº total de documentos) / (Nº dedocumentos que contemnham o termo w)
 
 **TFIDF(w) = TF(w) * IDF(w)**
 
@@ -108,16 +110,55 @@ As seguintes palavras foram aplicadas ao modelos, com seus respectivos TFIDF sco
 ## Boruta_py - Feature Selection :mag:
 
 Antes de aplicar o modelo nos dados, foi realizado uma seleção de features utilizando a biblioteca [Boruta](https://github.com/scikit-learn-contrib/boruta_py).
-Boruta é um algorítmo bastante interessante, que checa a importancia de uma determianda coluna de acordo com sua performance contra uma versão com valores aleatorios da mesma (chamada de shadow feature), além de conceitos dad dsitribuição binomial para checar se uma feature realmente é importante ou não.
+Boruta é um algorítmo bastante interessante, que checa a importância de uma determianda feature de acordo com sua performance contra uma versão com valores aleatorios da mesma (chamada de shadow feature), além de utilziar conceitos da distribuição binomial para checar se uma feature realmente é importante ou não. Entre outras coisas, vale dar uma olhada na documentação para saber mais.
 
-O resultado do modelo com o boruta aplicado, teve uma diferença bem pequena na casa de 0.00Algumacoisa nas métricas de avaliação. Porém, ao reduzir a quantidade de colunas necessárias para o modelo, reduziu a carga de processamento utilizada. Além de que essa alteração foi positiva em todas as métricas.
+O resultado do modelo com o Boruta aplicado, teve uma diferença bem pequena na casa de 0.00Algumacoisa nas métricas de avaliação. Porém, ao reduzir a quantidade de colunas necessárias para o modelo, removendo 14 colunas, reduziu a carga de processamento utilizada. Além de que essa alteração foi positiva em todas as métricas.
 
 As colunas removidas pelo Boruta foram:
 
 `['default_profile', 'use_background_img',
    'location', 'geo_enable', 'verified',
-   'default_profile_image', 'covid19',
+   'profile_image', 'covid19',
    'god', 'gt', 'music','season',
    'video', 'win','youtube']`
 
-## O MODELO :milky_way:  :octocat:
+# O MODELO :milky_way:  :octocat:
+
+Diversos modelos e combinações entre modelos/features/transformações foram testados na busca pelo modelo que obtivesse a maior performance possível.
+Dentre os artigos científicos pesquisados, muitos se utilizavam ou ao menos mencionavam o Random Forest como o modelo que melhor se ajusta-se ao problema em questão.
+Antes e durante o processo de transformação dos dados, alguns outros modelos foram capazes de performar melhor que o Random Forest. Como o SVM e até mesmo a regressão logística. Porém, ainda com uma performance bem a baixo do esperado. 
+
+Antes de abordar o modelo, vamos falar sobreas métricas de avaliação que foram utilizadas para selecionar o modelo com maior performance.
+
+## Métricas de Avaliação :chart_with_upwards_trend:
+
+O objetivo do projeto é criar um modelo que maximize a identificação de perfis automatizados, e, ao mesmo tempo, minimize a ocorrência de falsos positivos. Pois a identificação errada de um usuário verdadeiro pode causar sérios problemas, tanto para o usuário quanto para a empresa. Para isso foram priorizadas as seguintes métricas:
+
+- **Recall**: Porcentagem de observações corretamente identificada como 1(bot), dentre todas as observações 1(bot). Penaliza Falso Negativo.
+- **Precision**: Porcentagem de observações corretamente identificada como 1(bot), dentre todas as classificadas como 1(bots). Penaliza falso Positivo
+- **F1**:Representa média entre Precision e Recall, dando um peso igual às duas métricas.
+
+Normalmente ocorre um trade-off entre Precision e Recall, para aumentar uma devemos reduzir outra, por isso também foi utilizado o F1-score, sendo a métrica de maior relevância para a avaliação de performance do modelo.
+
+![precision e recall](https://upload.wikimedia.org/wikipedia/commons/2/26/Precisionrecall.svg)
+
+
+## Random Forest :deciduous_tree:
+
+Após todas as transformações realizadas, constatou-se que realmente os modelos baseados em arvore (como o XGBoost, ADA e Random Forest) foram os que mais performaram. Após a otimização dos hiper-parâmetros dos modelos mencionados, o Random Forest foi modelo que melhor se ajustou o problema e obteve as melhores métricas.
+
+|    Modelo |           | RF_HPgrid1000_boruta |
+|----------:|-----------|---------------------:|
+| --------- | --------- | -------------------- |
+|           | Treino    | Teste                |
+| Accurácia | 0.865     | 0.806                |
+| Precision | 0.87      |                0.811 |
+|    Recall | 0.856     |                0.799 |
+|        F1 | 0.885     |                0.831 |
+
+
+### Avaliação do modelo
+
+O modelo construído obteve a seguinte matriz de confusão para o teste, considerando um treshhold padrão de 0.5
+
+![ConfusionMatrixDisplay]()
