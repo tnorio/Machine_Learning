@@ -159,6 +159,33 @@ Após todas as transformações realizadas, constatou-se que realmente os modelo
 
 ### Avaliação do modelo
 
+#### Matriz de Confusão
 O modelo construído obteve a seguinte matriz de confusão para o teste, considerando um treshhold padrão de 0.5
 
-![ConfusionMatrixDisplay]()
+![ConfusionMatrixDisplay](https://raw.githubusercontent.com/tnorio/Machine_Learning/main/Detec%C3%A7%C3%A3o%20de%20Perfis%20Automatizados%20-%20Twibot20/images/Matriz%20%20de%20confus%C3%A3o%20teste.jpg)
+
+Através da matriz de confusão conseguimos observar a quantidade de:
+- Falsos Postivos -> humanos identificados como bot de forma errada
+- Verdadeiros Positivos -> bots corretamente identificados como bots
+- Falsos Negativos -> bots que não foram identificados como bots
+- Verdadiero Negativo -> humanos corretamente identificados como humanos
+
+A Matriz de confusão nos mostra a quantidade de observações corretamente identificadas na diagonal esquerda (\) e as observações identificadas de maneira errada na diagonal direita (/). E é apartir dela que são computadas as métricas de avaliação mencionadas anteriormente.
+
+#### Curva ROC
+
+Podemos alterar o comportamento da Matriz de confusão de de acordo com o treshold escolhido para rotulação das observações. Em outras palavras, ao rodar o modelo para *N* observações ele retorna a probabilidade de que determinada observação seja um bot, e de acordo com o limiar de classificação escolhido para rotular determinada observação como bot a matriz de confusão é alterada, e por consequencia os resultados das métricas de avaliação.
+
+Assim se quisermos ser mais conservadores, rotulando como bot somente as observações com alta probabilidade, devemos AUMENTAR o limiar de classificação (treshold). Ao fazer isso por consequência, deixaremos de identificar alguns bots porém reduziremos a quantidade de usuários verdadeiros identificados como bot. Em outras palavras, assim  diminuimos os Verdadeiros Positivos e também diminuimos os Falso Positivos.
+
+Se diminuirmos nosso limiar de classificação, o oposto irá ocorrer.
+
+E através da Curva ROC, conseguimos plotar esse trade-off entre Verdadeiro positivo e Falso negativos de acordo com a variação do limiar escolhido (treshold)
+
+![ROC](https://raw.githubusercontent.com/tnorio/Machine_Learning/main/Detec%C3%A7%C3%A3o%20de%20Perfis%20Automatizados%20-%20Twibot20/images/ROC.jpg)
+
+AUC se refere a Area Under de Curve, ou área abaixo da curva, evai de 0 até 1. Quanto maior seu valor, melhor o modelo será capaz de identificar os Verdadeiros Positivos sem ocorrer em Falsos Positivos.
+
+### Feature Importance -SHAP
+Para analisármos quais foram as features mais importantes para a avaliação proposta pelo do modelo, foi utilizado o SHAP
+
