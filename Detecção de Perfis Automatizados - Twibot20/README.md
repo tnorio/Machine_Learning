@@ -2,9 +2,11 @@
 Este projeto foi realizado como projeto de conclusão do curso de Data Science da Digital House.
 Com exceção da obtenção dos dados, todo o processo de manipulação e modelagem dos dados foi realizado por mim.
 
+
+## Objetivos :question::grey_exclamation:
 O projeto possui como objetivo a criação de um modelo de classificação capaz de identificar características que possam levar a identificação de um perfil automatizado (bot) na rede social Twitter. O modelo deve ser capaz de identificar o maior número de bots possiveis ao mesmo tempo que evita a ocorrência de falso positivo,a identificação de usuários reais como bots.
 
-Não é difícil encontrar artigos científicos que proponham a criação de modelos com esse objetivo, porém muitos deles não utilizam dados realmente representativos do mundo real ou não performam bem em um teste verdadeiro. De qualquer maneira, alguns artigos foram consultados com o intuito de obter uma maior compreensão sobre o problema e identificar possíveis features e modelos relevantes para o problema.
+Não é difícil encontrar artigos científicos que proponham a criação de modelos com esse objetivo, porém muitos deles não utilizam dados realmente representativos do mundo real, devido a complexidade de identificar se um perfil realmente é um boto u não, ou não performam bem em um teste verdadeiro. De qualquer maneira, alguns artigos foram consultados com o intuito de obter uma maior compreensão sobre o problema e identificar possíveis features e modelos relevantes para o problema.
 
 ## :book: Dados 
 
@@ -142,10 +144,15 @@ Normalmente ocorre um trade-off entre Precision e Recall, para aumentar uma deve
 
 ![precision e recall](https://upload.wikimedia.org/wikipedia/commons/2/26/Precisionrecall.svg)
 
+Agora que já entendemos as métricas,vamos para o modelo
 
 ## Random Forest :deciduous_tree:
 
 Após todas as transformações realizadas, constatou-se que realmente os modelos baseados em arvore (como o XGBoost, ADA e Random Forest) foram os que mais performaram. Após a otimização dos hiper-parâmetros dos modelos mencionados, o Random Forest foi modelo que melhor se ajustou o problema e obteve as melhores métricas.
+
+Random Forest é um modelo de Ensamble do tipo Baggin (Bootstrap Aggregating). Ensambles do tipo Baggin realizam diversos modelos em paralelo e combinam seus resultados para uma previsão final. O Random Forest, além de criar várias arvores em paralelo para estimar o resultado final, ainda utiliza subgrupos aleatórios das features em cada árvore para criar uma floresta não correlacionada de arvores de decisão.
+
+As métricas obtidas com nosso modelo foram
 
 |    Modelo |           | RF_HPgrid1000_boruta |
 |----------:|-----------|---------------------:|
@@ -187,6 +194,26 @@ E através da Curva ROC, conseguimos plotar esse trade-off entre Verdadeiro posi
 AUC se refere a Area Under de Curve, ou área abaixo da curva, evai de 0 até 1. Quanto maior seu valor, melhor o modelo será capaz de identificar os Verdadeiros Positivos sem ocorrer em Falsos Positivos.
 
 ### Feature Importance -SHAP
-Para analisármos quais foram as features mais importantes para a avaliação proposta pelo do modelo, foi utilizado o SHAP
+
+Para analisármos quais foram as features mais importantes para a avaliação proposta pelo do modelo e como a variação de seus valores impacta no resultado final, foi utilizado o [SHAP](https://shap.readthedocs.io/en/latest/index.html) (SHapley Additive exPlanations). O SHAP utiliza conceitos da teoria dos jogos e é capaz de demonstrar o quanto a alteração de uma variável é capaz de influenciar o resultado do modelo, nos ajudando a compreeender o funcionamento do modelo.
+
+Ele ordena as features de acordo com o chamado Shapley Values, que, basicamente, mede o impacto de cada feature no modelo.
+
+No gráfico abaixo, as features estão rankeadas, do maior para o menor, de acordo com o Shapley value geral de cada feature. Valores em vermelho, são mais importante em avaliar se um perfil é um bot ou não.
+
+![SHAP](https://raw.githubusercontent.com/tnorio/Machine_Learning/main/Detec%C3%A7%C3%A3o%20de%20Perfis%20Automatizados%20-%20Twibot20/images/SHAP.jpg)
+
+Podemos observar que erificou-se que as 5 features mais significativas para o modelo foram:
+- friends_followers_ratio
+- Listed_count
+- Followers_count
+- Listed_growth_rate
+- followers_growth_rate
+
+Isso nos mostra que a quantidade de conexões, sejam seguidos ou seguidores, que um perfil possui e a taxa decrescimento que essas conexões são realizadas são fatores preponderantes para determinar se determinar se um perfil será um bot ou um humano. Oque confirma um conhecimento heurístico das redes sociais, humanos querem se conectar com outros humanos, não querendo se associar com perfis falsos/bots.
+
+## Conclusão
+
+Co
 
 # EM CONTSTRUÇÃO
