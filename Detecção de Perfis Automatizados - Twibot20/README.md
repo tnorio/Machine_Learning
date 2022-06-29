@@ -212,8 +212,27 @@ Podemos observar que erificou-se que as 5 features mais significativas para o mo
 
 Isso nos mostra que a quantidade de conexões, sejam seguidos ou seguidores, que um perfil possui e a taxa decrescimento que essas conexões são realizadas são fatores preponderantes para determinar se determinar se um perfil será um bot ou um humano. Oque confirma um conhecimento heurístico das redes sociais, humanos querem se conectar com outros humanos, não querendo se associar com perfis falsos/bots.
 
-## Conclusão
+## Conclusão  :confetti_ball:
 
-Co
+Caso você tenha dado uma olhada no artigo científico utilizado como fonte de dados do modelo, pode observar que a proposta do artigo, como falado anteriormente, é a de criação de um dataset que seja representativo do mundo real. E não a criação de um modelo de machine learning capaz de identificar bots e humanos.
 
-# EM CONTSTRUÇÃO
+No final do artigo os autores testam alguns modelos propostos por outros artigos científicos utilizando o dataset gerado, e apresentam os resultados de cada modelo. Vale ressaltar que os modelos testados foram propostos por artigos recentes, o mais antigo é de 2011 sendo qua agrande maioria se concentra entre os anos de 2018 e 2020. 
+
+Se compararmos nosso modelo com os modelos testados, nosso modelo ocupa a 2ª colocação no ranking! Estando apenas cerca de 2% abaixo do modelo que melhor performou, observando o F1 score.
+
+Ao análisar o artigo do melhor modelo avaliado, pude perceber que uma das features mais importantes em seu modelo, foi uma métrica de comparação do nome e da descrição de cada perfil. Que só foi capaz de ser criada após a extração de dados de centenas de milhares de usuários. Claramente este tipo de feature não seria possível ser craido por este projeto, visto que demandaria um esforço computacional/técnico que não esteve disponível na elaboração deste projeto.
+
+De qualquer forma estou muito satisfeito com o resultado, apenas 2% de diferença no F1 score sem a necessidade de minearar dados de centenas de milhares de usuários na plataforma.
+
+### Considerações finais
+
+A complexidade e das redes sociais e comportamento humano, torna este um problema altamente dinâmico. Praticamente todos os dias novas formas de evitar o surgimento e propagação de perfis fake são implementadas pelas plataformas. E ao mesmo tempo novas formas de enganar estas medidas são criadas e adotadas pelos bots das redes sociais.
+Oque torna a busca por uma solução um trabalho constante, que se altera ao longo do tempo.
+
+## Bibliografia :book:
+
+- [TwiBot-20: A Comprehensive Twitter Bot Detection Benchmark](https://www.researchgate.net/publication/355785254_TwiBot-20_A_Comprehensive_Twitter_Bot_Detection_Benchmark)
+- [A one-class classification approach for bot detection on Twitter](https://www.sciencedirect.com/science/article/pii/S0167404820300031)
+- [Online Human-Bot Interactions: Detection, Estimation, and Characterization](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3324593)
+- [Detecting Twitter Fake Accounts using Machine Learning and Data Reduction Techniques](https://www.semanticscholar.org/paper/Detecting-Twitter-Fake-Accounts-using-Machine-and-Homsi-Nemri/a745f5458c992b83a0fb8da3fe1b0a240d155d60)
+- [Fake Account Detection in Twitter Based on Minimum Weighted Feature](https://www.researchgate.net/publication/304569053_Fake_Account_Detection_in_Twitter_Based_on_Minimum_Weighted_Feature_set)
