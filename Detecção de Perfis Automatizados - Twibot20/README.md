@@ -218,7 +218,9 @@ Caso você tenha dado uma olhada no artigo científico utilizado como fonte de d
 
 No final do artigo os autores testam alguns modelos propostos por outros artigos científicos utilizando o dataset gerado, e apresentam os resultados de cada modelo. Vale ressaltar que os modelos testados foram propostos por artigos recentes, o mais antigo é de 2011 sendo qua agrande maioria se concentra entre os anos de 2018 e 2020. 
 
-Se compararmos nosso modelo com os modelos testados, nosso modelo ocupa a 2ª colocação no ranking! Estando apenas cerca de 2% abaixo do modelo que melhor performou, observando o F1 score.
+Se compararmos nosso modelo com os modelos testados, nosso modelo ocupa a 2ª colocação no ranking! Estando apenas cerca de 2% abaixo do modelo que melhor performou, observando o F1 score. É oque podemos observar na reprodução da tabela observada no artigo, com o resultado do nosso modelo.
+
+![Comparação de resultados](https://raw.githubusercontent.com/tnorio/Machine_Learning/main/Detec%C3%A7%C3%A3o%20de%20Perfis%20Automatizados%20-%20Twibot20/images/resultados.jpg)
 
 Ao análisar o artigo do melhor modelo avaliado, pude perceber que uma das features mais importantes em seu modelo, foi uma métrica de comparação do nome e da descrição de cada perfil. Que só foi capaz de ser criada após a extração de dados de centenas de milhares de usuários. Claramente este tipo de feature não seria possível ser craido por este projeto, visto que demandaria um esforço computacional/técnico que não esteve disponível na elaboração deste projeto.
 
