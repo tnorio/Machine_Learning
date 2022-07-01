@@ -1,7 +1,7 @@
 # Detecção de Perfis Automatizados - Twibot20 :bird: :space_invader:
 Este projeto foi realizado como projeto de conclusão do curso de Data Science da Digital House.
 
-## Objetivos :question::grey_exclamation:
+## Objetivos :pushpin: :grey_exclamation:
 O projeto possui como objetivo a criação de um modelo de classificação capaz de identificar características que possam levar a identificação de um perfil automatizado (bot) na rede social Twitter. O modelo deve ser capaz de identificar o maior número de bots possiveis ao mesmo tempo que evita a ocorrência de falso positivo,a identificação de usuários reais como bots.
 
 Não é difícil encontrar artigos científicos que proponham a criação de modelos com esse objetivo, porém muitos deles não utilizam dados realmente representativos do mundo real, devido a complexidade de identificar se um perfil realmente é um bot ou não, ou não performam bem em um teste verdadeiro. De qualquer maneira, alguns artigos foram consultados com o intuito de obter uma maior compreensão sobre o problema e identificar possíveis features e modelos relevantes para o problema.
