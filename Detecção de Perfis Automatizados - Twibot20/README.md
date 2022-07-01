@@ -1,18 +1,16 @@
 # Detecção de Perfis Automatizados - Twibot20 :bird: :space_invader:
 Este projeto foi realizado como projeto de conclusão do curso de Data Science da Digital House.
-Com exceção da obtenção dos dados, todo o processo de manipulação e modelagem dos dados foi realizado por mim.
-
 
 ## Objetivos :question::grey_exclamation:
 O projeto possui como objetivo a criação de um modelo de classificação capaz de identificar características que possam levar a identificação de um perfil automatizado (bot) na rede social Twitter. O modelo deve ser capaz de identificar o maior número de bots possiveis ao mesmo tempo que evita a ocorrência de falso positivo,a identificação de usuários reais como bots.
 
-Não é difícil encontrar artigos científicos que proponham a criação de modelos com esse objetivo, porém muitos deles não utilizam dados realmente representativos do mundo real, devido a complexidade de identificar se um perfil realmente é um boto u não, ou não performam bem em um teste verdadeiro. De qualquer maneira, alguns artigos foram consultados com o intuito de obter uma maior compreensão sobre o problema e identificar possíveis features e modelos relevantes para o problema.
+Não é difícil encontrar artigos científicos que proponham a criação de modelos com esse objetivo, porém muitos deles não utilizam dados realmente representativos do mundo real, devido a complexidade de identificar se um perfil realmente é um bot ou não, ou não performam bem em um teste verdadeiro. De qualquer maneira, alguns artigos foram consultados com o intuito de obter uma maior compreensão sobre o problema e identificar possíveis features e modelos relevantes para o problema.
 
 ## :book: Dados 
 
 Os dados utilizados no projeto foram obtidos pela equipe do paper [TwiBot-20: A Comprehensive Twitter Bot Detection Benchmark](https://www.researchgate.net/publication/355785254_TwiBot-20_A_Comprehensive_Twitter_Bot_Detection_Benchmark). O paper foi elaborado com o objetivo de criar um dataset que seja representativo da realidade observada no twitter.
 
-Após entrar em contato por email com um dos  autores do paper, explicar a idéia do projeto e que se tratava de um projeto com fins academicos os dados foram gentilmente cedidos.
+Após entrar em contato por email com um dos  autores do paper, explicar a idéia do projeto e que se tratava de um projeto com fins acadêmicos,  os dados foram gentilmente compartilhados.
 Como os dados não estão disponíveis de forma pública na internet, este repositório contará apenas com uma amostra de 15 elementos do treino e do teste para ilustrar os processos desenvolvidos.
 
 Os dados recebidos estavam em formato .json e já estavam divididos em treino e teste, e assim foi mantido para preservar comparações futuras.
@@ -26,7 +24,7 @@ Os dados recebidos estavam em formato .json e já estavam divididos em treino e 
 |            17685258 | {'id': '17685258 ', 'id_str': '17685258 ', 'na... | [RT @realDonaldTrump: THANK YOU #RNC2020! http... | {'following': ['46464108', '21536398', '186434... |   [Politics, Entertainment, Sports] |     0 |
 
 - 'ID': ID de identificação utilizado pelo twitter
-- 'profile':  informações do perfil obtidas pela API do Twtiter
+- 'profile':  Dicionário com informações do perfil obtidas pela API do Twtiter
 - 'tweet': Os últimso 200 tweets do usuário
 - 'neighbor': 20 seguidores e seguidos aleatórios do usuário
 - 'domain': Assunto discutido pelo usuário, podendo ser: politics, business, entertainment e sports
@@ -60,7 +58,7 @@ foram extraidas as seguintes informações:
 
 ### 1.1 Algumas dessas features foram utilizadas para a criação de novas:
 
-- profile_m_age -> idade do perfil em meses, baseada no created_at 
+- profile_m_age -> idade do perfil em meses, baseada no created_at. Usada para Criação de features nas etapas seguintes.
 - frequencia de tweets -> statuses_count / profile_m_age
 - name_lenght -> quantidade de caracteres do do name
 - screen_name_length -> quantidade de caracteres do screen_name
@@ -86,7 +84,7 @@ Estas informações foram extraidas com base na premisssa de que perfis automati
 ### 2.1 TFIDF - NLP
 Com o intuito de extrair informações que possam ser relevantes para a análise com base nos textos dos posts, foi realizado um processamento de linguagem natural (NLP) simples. Foi utilizado o TFIDF para extrair as palavras 200 mais relevantes entre todos os posts.
 
-A idéia por trás do TFIDF é que se uma palavra aparece com frequencia em um documento, então ela deve ser importante e por isso deve receber um score alto. Mas se a palavra aparece em muitos outros documentos, provavelmente não é um identificador único ( pode ser um conectivo, preposição, etc.), então deve receber um valor baixo.
+A idéia por trás do TFIDF é que se uma palavra aparece com frequência em um documento, então ela deve ser importante e por isso deve receber um score alto. Mas se a palavra aparece em muitos outros documentos, provavelmente não é um identificador sobre o tema do documento ( pode ser um conectivo, preposição, etc.), então deve receber um valor baixo.
 
 TFIDF é a junção de 2 transformações:
 **TF** -> Term Frquency ( frequência do termo)
@@ -97,7 +95,7 @@ TFIDF é a junção de 2 transformações:
 
 **TFIDF(w) = TF(w) * IDF(w)**
 
-Para não adicionarmos mais 200 colunas aos nosso dados, uma para cada uma das palavras selecionadas, foram selecionadas apenas as colunas que possuiam a maior variância entre os scores. Pois uma coluna com baixa variância significa que os valores entre todas as observações não são muito diferentes, e por isso não proporcionariam informações relevantes ao modelo.
+Para não adicionarmos mais 200 colunas aos nosso dados, uma para cada uma das palavras selecionadas, foram selecionadas apenas as colunas que possuiam a maior variância entre os scores. Pois uma coluna com baixa variância significa que os valores entre todas as observações não são muito diferentes, e por isso, no geral, não proporcionariam informações relevantes, para distinção dos usuários, ao modelo.
 
 Assim somente as palavras que possuiam uma variância maior que o 3º quartil, o top 25%, foram mantidas.
 Ainda assim algumas palavras sem sentido, passaram pelos filtros. Como emojis (amp) e conectivos em espanhol (en, la, los....) que foram removidas.
