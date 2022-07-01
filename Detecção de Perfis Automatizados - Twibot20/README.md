@@ -146,7 +146,7 @@ Agora que já entendemos as métricas,vamos para o modelo
 
 ## Random Forest :deciduous_tree:
 
-Após todas as transformações realizadas, constatou-se que realmente os modelos baseados em arvore (como o XGBoost, ADA e Random Forest) foram os que mais performaram. Após a otimização dos hiper-parâmetros dos modelos mencionados, o Random Forest foi modelo que melhor se ajustou o problema e obteve as melhores métricas.
+Após todas as transformações realizadas, constatou-se que realmente os modelos baseados em arvore (como o XGBoost, ADA e Random Forest) foram os que mais performaram. Após a otimização dos hiper-parâmetros dos modelos mencionados, o Random Forest foi modelo que melhor se ajustou ao problema e obteve as melhores métricas.
 
 Random Forest é um modelo de Ensamble do tipo Baggin (Bootstrap Aggregating). Ensambles do tipo Baggin realizam diversos modelos em paralelo e combinam seus resultados para uma previsão final. O Random Forest, além de criar várias arvores em paralelo para estimar o resultado final, ainda utiliza subgrupos aleatórios das features em cada árvore para criar uma floresta não correlacionada de arvores de decisão.
 
@@ -226,8 +226,9 @@ De qualquer forma estou muito satisfeito com o resultado, apenas 2% de diferenç
 
 ### Considerações finais
 
-A complexidade e das redes sociais e comportamento humano, torna este um problema altamente dinâmico. Praticamente todos os dias novas formas de evitar o surgimento e propagação de perfis fake são implementadas pelas plataformas. E ao mesmo tempo novas formas de enganar estas medidas são criadas e adotadas pelos bots das redes sociais.
-Oque torna a busca por uma solução um trabalho constante, que se altera ao longo do tempo.
+A complexidade e das redes sociais e comportamento humano, torna este um problema altamente dinâmico. Praticamente todos os dias novas formas de enganar as medidas de prevenção a perfis automatizados são criadas e adotadas pelos bots das redes sociais. E ao mesmo tempo novas formas de evitar o surgimento e propagação de perfis fake são implementadas pelas plataformas. Oque torna a busca por uma solução um trabalho constante.
+
+As features dos  utilizadas no modelo, com excessão das features baseadas em texto, pois os assuntos nas redes são altamente dinâmicos e variam de acordo com a região / acontecimentos mais recentes, foram features que podem continuar a ser aplicadas em modelos futuros e que não possuem vieses preconceituosos contra determinados grupos de usuários.  Sendo assim, este modelo se torna mais um passo na constante busca por um ambiente de interações sociais livre de manipulações de fake news / spams.
 
 ## Bibliografia :book:
 
